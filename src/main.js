@@ -41,14 +41,18 @@ function onRandomRecipe(){
   recipeImage.style.width   = "200px";
 
   //if the list items has not been added yet, add the list items from the array that had been made previously.
-  if(addedList < 1){
+  // if(addedList < 1){
+
+  //add the instructions that have been separated into multiple lines on an array to the html file.
     for(let i = 1; i < instructionOrders; i++){
       const node      = document.createElement("li");
       const textnode  = document.createTextNode(separateInstructions[i]);
       node.appendChild(textnode);
       recipeInstructions.appendChild(node)
     }
-  };
+
+
+  // };
 
   //mark for all of the list items has been exported to the html file
   // addedList++;
