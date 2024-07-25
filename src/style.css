@@ -76,15 +76,6 @@ li{
   line-height: 1.3em;
 }
 
-.animation-slide-up{
-  animation: slide-up 2.3s;
-}
-
-.animation-disappear{
-  animation: disappear 1s 3s
-}
-
-
 .animation-stretch{
   animation: stretch 2.3s ease;
 }

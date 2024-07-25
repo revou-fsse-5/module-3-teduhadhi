@@ -13,19 +13,30 @@ let instructionOrders = separateInstructions.length;
 // declare a variable to prevent a repetitive list being added.
 let addedList = 0;
 
-//add event listener to call an empty function when the selected button is being clicked.
-document.querySelector("#getRecipeBtn").addEventListener("click",function onRandomRecipe(){
+//declare every each of the selected element to manipulated into variables.
+let container           = document.querySelector(".container");
+let recipeTitle         = document.querySelector(".recipe-title");
+let recipeButton        = document.querySelector("#getRecipeBtn");
+let recipeContainer     = document.querySelector(".recipe-container");
+let recipeImage         = document.querySelector(".recipe-image");
+let recipeInstructions  = document.querySelector(".recipe-instructions");
 
-  //activate the strecth animation by adding the animation attribute.
-  document.querySelector(".container").classList.add("animation-stretch");
 
-  //change the display attribute from none to flex.
-  document.querySelector(".recipe-container").setAttribute("style", "display:flex");
-  document.querySelector("#getRecipeBtn").setAttribute("style", "display:none");
+//add event listener to call an the onRandomRecipe function when the selected button is being clicked.
+recipeButton.onclick = onRandomRecipe;
+
+function onRandomRecipe(){
+
+  //activate the strecth animation by adding the animation property.
+  container.classList.add("animation-stretch");
+
+  //change the display attribute for each element.
+  recipeContainer.style = "display:flex";
+  recipeButton.style = "display:none";
 
   //add properties to each of the selected class.
-  document.querySelector(".recipe-title").innerText = recipe.title;
-  document.querySelector(".recipe-image").setAttribute("src", recipe.image);
+  recipeTitle.innerText = recipe.title;
+  recipeImage.src = recipe.image;
 
   //if the list items has not been added yet, add the list items from the array that had been made previously.
   if(addedList<1){
@@ -33,13 +44,11 @@ document.querySelector("#getRecipeBtn").addEventListener("click",function onRand
       const node = document.createElement("li");
       const textnode = document.createTextNode(separateInstructions[i]);
       node.appendChild(textnode);
-      document.querySelector(".recipe-instructions").appendChild(node)
+      recipeInstructions.appendChild(node)
     }
   }
 
-  //all of the list items has been exported to the html file
+  //mark for all of the list items has been exported to the html file
   addedList++;
   return addedList;
-
-
-});
+  };
