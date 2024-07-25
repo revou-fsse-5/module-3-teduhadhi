@@ -5,9 +5,23 @@ const recipe = {
   image: "https://www.themealdb.com/images/media/meals/llcbn01574260722.jpg",
 };
 
+let separateInstructions =recipe.instructions.split(/\s\d/);
+let instructionOrders = separateInstructions.length;
+
+for (let i = 1 ; i < instructionOrders ; i++){
+  let numbering = i + 1;
+  separateInstructions[i] = "\n" + numbering + separateInstructions[i]
+}
+
+let newInstructions = separateInstructions.join("");
+
+console.log(newInstructions)
+
+
 document.querySelector("#getRecipeBtn").addEventListener("click",function(){
 // alert('button activated');
+document.querySelector(".recipe-container").setAttribute("style", "display:flex");
 document.querySelector(".recipe-title").innerText = recipe.title;
 document.querySelector(".recipe-image").setAttribute("src", recipe.image);
-document.querySelector(".recipe-instruction").innerText = recipe.instructions;
+document.querySelector(".recipe-instructions").innerText = newInstructions;
 });
