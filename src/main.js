@@ -37,6 +37,7 @@ function onRandomRecipe(){
   //add properties to each of the selected class.
   recipeTitle.innerText = recipe.title;
   recipeImage.src = recipe.image;
+  recipeImage.style.width = "200px";
 
   //if the list items has not been added yet, add the list items from the array that had been made previously.
   if(addedList < 1){

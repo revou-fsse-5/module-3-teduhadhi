@@ -49,7 +49,6 @@ button:hover {
 }
 
 .recipe-image {
-  width: 200px;
   border-radius: 8px;
   object-fit: cover;
   animation: slide-left 2.3s ease;
