@@ -49,7 +49,7 @@ button:hover {
 }
 
 .recipe-image {
-  width: 50%;
+  width: 200px;
   border-radius: 8px;
   object-fit: cover;
   animation: slide-left 2.3s ease;
@@ -75,6 +75,15 @@ li{
   margin-top: 0.5em;
   line-height: 1.3em;
 }
+
+.animation-slide-up{
+  animation: slide-up 2.3s;
+}
+
+.animation-disappear{
+  animation: disappear 1s 3s
+}
+
 
 .animation-stretch{
   animation: stretch 2.3s ease;
@@ -103,7 +112,6 @@ li{
     height: 110px;
   }
   to{
-    height: 510px;
+    height: 296px;
   }
 }
-

@@ -14,13 +14,14 @@ let instructionOrders = separateInstructions.length;
 let addedList = 0;
 
 //add event listener to call an empty function when the selected button is being clicked.
-document.querySelector("#getRecipeBtn").addEventListener("click",function(){
+document.querySelector("#getRecipeBtn").addEventListener("click",function onRandomRecipe(){
 
   //activate the strecth animation by adding the animation attribute.
   document.querySelector(".container").classList.add("animation-stretch");
 
   //change the display attribute from none to flex.
   document.querySelector(".recipe-container").setAttribute("style", "display:flex");
+  document.querySelector("#getRecipeBtn").setAttribute("style", "display:none");
 
   //add properties to each of the selected class.
   document.querySelector(".recipe-title").innerText = recipe.title;
