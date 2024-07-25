@@ -7,19 +7,19 @@ const recipe = {
 
 
 //split the instructions into multiple strings, then store them into an array.
-let separateInstructions =recipe.instructions.split(/\d\.\s/);
-let instructionOrders = separateInstructions.length;
+let separateInstructions  = recipe.instructions.split(/\d\.\s/);
+let instructionOrders     = separateInstructions.length;
 
 // declare a variable to prevent a repetitive list being added.
-let addedList = 0;
+let addedList             = 0;
 
 //declare every each of the selected element to manipulated into variables.
-let container           = document.querySelector(".container");
-let recipeTitle         = document.querySelector(".recipe-title");
-let recipeButton        = document.querySelector("#getRecipeBtn");
-let recipeContainer     = document.querySelector(".recipe-container");
-let recipeImage         = document.querySelector(".recipe-image");
-let recipeInstructions  = document.querySelector(".recipe-instructions");
+let container             = document.querySelector(".container");
+let recipeTitle           = document.querySelector(".recipe-title");
+let recipeButton          = document.querySelector("#getRecipeBtn");
+let recipeContainer       = document.querySelector(".recipe-container");
+let recipeImage           = document.querySelector(".recipe-image");
+let recipeInstructions    = document.querySelector(".recipe-instructions");
 
 
 //add event listener to call an the onRandomRecipe function when the selected button is being clicked.
@@ -39,14 +39,14 @@ function onRandomRecipe(){
   recipeImage.src = recipe.image;
 
   //if the list items has not been added yet, add the list items from the array that had been made previously.
-  if(addedList<1){
-    for(let i = 1 ; i < instructionOrders; i++){
-      const node = document.createElement("li");
-      const textnode = document.createTextNode(separateInstructions[i]);
+  if(addedList < 1){
+    for(let i = 1; i < instructionOrders; i++){
+      const node      = document.createElement("li");
+      const textnode  = document.createTextNode(separateInstructions[i]);
       node.appendChild(textnode);
       recipeInstructions.appendChild(node)
     }
-  }
+  };
 
   //mark for all of the list items has been exported to the html file
   addedList++;
