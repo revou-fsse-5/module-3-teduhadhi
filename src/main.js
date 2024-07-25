@@ -11,7 +11,7 @@ let separateInstructions  = recipe.instructions.split(/\d\.\s/);
 let instructionOrders     = separateInstructions.length;
 
 // declare a variable to prevent a repetitive list being added.
-let addedList             = 0;
+// let addedList             = 0;
 
 //declare every each of the selected element into variables.
 let container             = document.querySelector(".container");
@@ -51,6 +51,6 @@ function onRandomRecipe(){
   };
 
   //mark for all of the list items has been exported to the html file
-  addedList++;
-  return addedList;
+  // addedList++;
+  // return addedList;
   };
