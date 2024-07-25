@@ -31,13 +31,13 @@ function onRandomRecipe(){
   container.classList.add("animation-stretch");
 
   //change the display attribute for each element.
-  recipeContainer.style = "display:flex";
-  recipeButton.style = "display:none";
+  recipeContainer.style     = "display:flex";
+  recipeButton.style        = "display:none";
 
   //add properties to each of the selected class.
-  recipeTitle.innerText = recipe.title;
-  recipeImage.src = recipe.image;
-  recipeImage.style.width = "200px";
+  recipeTitle.innerText     = recipe.title;
+  recipeImage.src           = recipe.image;
+  recipeImage.style.width   = "200px";
 
   //if the list items has not been added yet, add the list items from the array that had been made previously.
   if(addedList < 1){
