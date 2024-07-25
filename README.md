@@ -15,4 +15,4 @@ Just by a click of a button!
 <img src="./src\Readme\main-page.png" alt="preview" width="400px"/>
 
 
-<img src="./src\Readme\recipe-example.png" alt="preview" width="400px"/>
+<img src="./src\Readme\recipe-example.png" alt="recipe-preview" width="400px"/>
