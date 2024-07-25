@@ -51,17 +51,13 @@ button:hover {
 .recipe-image {
   border-radius: 8px;
   object-fit: cover;
-  animation: slide-left 2.3s ease;
+  /* animation: slide-left 2.3s ease; */
   z-index: 2;
 }
 
 .recipe-title {
   font-size: 24px;
   margin-bottom: 10px;
-}
-
-.text{
-  animation: fade-in 3s ease;
 }
 
 .recipe-instructions {
@@ -75,18 +71,22 @@ li{
   line-height: 1.3em;
 }
 
+.animation-fade-in{
+  animation: fade-in 3s ease;
+}
+
 .animation-stretch{
   animation: stretch 2.3s ease;
 }
 
-@keyframes slide-left{
+/* @keyframes slide-left{
   from{
     transform: translateX(100%);
   }
   to{
     transform: translateX(0%);
   }
-}
+} */
 
 @keyframes fade-in{
   from{

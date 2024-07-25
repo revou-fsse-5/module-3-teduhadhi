@@ -13,7 +13,7 @@ let instructionOrders     = separateInstructions.length;
 // declare a variable to prevent a repetitive list being added.
 let addedList             = 0;
 
-//declare every each of the selected element to manipulated into variables.
+//declare every each of the selected element into variables.
 let container             = document.querySelector(".container");
 let recipeTitle           = document.querySelector(".recipe-title");
 let recipeButton          = document.querySelector("#getRecipeBtn");
@@ -27,8 +27,9 @@ recipeButton.onclick = onRandomRecipe;
 
 function onRandomRecipe(){
 
-  //activate the strecth animation by adding the animation property.
+  //activate the strecth and fadein animation by adding the animation properties to each of the selected element.
   container.classList.add("animation-stretch");
+  recipeContainer.classList.add("animation-fade-in");
 
   //change the display attribute for each element.
   recipeContainer.style     = "display:flex";
