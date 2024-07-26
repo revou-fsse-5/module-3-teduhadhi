@@ -18,4 +18,4 @@ Just by a click of a button!
 <img src="./src\Readme\recipe-example.png" alt="recipe-preview" width="400px"/>
 
 ## Challenges
-The biggest challenge I have faced on this checkpoint is by far when I make the ordered instruction list by splitting the one long string into multiple strings, then append them into list items on the index.html file.
+The biggest challenge I have faced on this checkpoint is by far when I made the ordered instruction list by splitting the one long string into multiple strings, then append them into list items on the index.html file.

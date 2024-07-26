@@ -72,11 +72,11 @@ li{
 }
 
 .animation-fade-in{
-  animation: fade-in 3s ease;
+  animation: fade-in 1.5s ease;
 }
 
 .animation-stretch{
-  animation: stretch 2.3s ease;
+  animation: stretch 1s ease;
 }
 
 /* @keyframes slide-left{
