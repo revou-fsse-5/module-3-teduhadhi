@@ -6,14 +6,13 @@ const recipe = {
 };
 
 
-//split the instructions into multiple strings, then store them into an array.
 let separateInstructions  = recipe.instructions.split(/\d\.\s/);
 let instructionOrders     = separateInstructions.length;
 
-// declare a variable to prevent a repetitive list being added.
+console.log(separateInstructions);
+
 // let addedList             = 0;
 
-//declare every each of the selected element into variables.
 let container             = document.querySelector(".container");
 let recipeTitle           = document.querySelector(".recipe-title");
 let recipeButton          = document.querySelector("#getRecipeBtn");
@@ -21,29 +20,20 @@ let recipeContainer       = document.querySelector(".recipe-container");
 let recipeImage           = document.querySelector(".recipe-image");
 let recipeInstructions    = document.querySelector(".recipe-instructions");
 
-
-//add event listener to call an the onRandomRecipe function when the selected button is being clicked.
 recipeButton.onclick = onRandomRecipe;
 
 function onRandomRecipe(){
 
-  //activate the strecth and fadein animation by adding the animation properties to each of the selected element.
   container.classList.add("animation-stretch");
   recipeContainer.classList.add("animation-fade-in");
-
-  //change the display attribute for each element.
   recipeContainer.style     = "display:flex";
   recipeButton.style        = "display:none";
-
-  //add properties to each of the selected class.
   recipeTitle.innerText     = recipe.title;
   recipeImage.src           = recipe.image;
   recipeImage.style.width   = "200px";
 
-  //if the list items has not been added yet, add the list items from the array that had been made previously.
-  // if(addedList < 1){
 
-  //add the instructions that have been separated into multiple lines on an array to the html file.
+  // if(addedList < 1){
     for(let i = 1; i < instructionOrders; i++){
       const node      = document.createElement("li");
       const textnode  = document.createTextNode(separateInstructions[i]);
@@ -51,10 +41,7 @@ function onRandomRecipe(){
       recipeInstructions.appendChild(node)
     }
 
-
   // };
-
-  //mark for all of the list items has been exported to the html file
   // addedList++;
   // return addedList;
   };
