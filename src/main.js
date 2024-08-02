@@ -11,13 +11,11 @@ nextRecipeButton.onclick  = onRandomRecipe;
 
 let container             = document.querySelector(".container");
 let recipeContainer       = document.querySelector(".recipe-container");
+let errorMessage          = document.querySelector(".error-message");
 
 async function onRandomRecipe() {
   await getData();
-  container.classList.add("animation-stretch");
-  recipeContainer.classList.add("animation-fade-in");
-  recipeContainer.style     = "display:flex";
-  recipeButton.style        = "display:none";
+  
   };
 
 const getData = async () =>{
@@ -27,15 +25,33 @@ const getData = async () =>{
     const recipeArray = fetchedData.meals[0];
 
     listRemover();
+    succeed();
+
     makeIngredientList(ingredientsChecker(recipeArray));
     makeInstructionList(recipeArray.strInstructions);
     embedData(recipeArray);
 
   } catch (error) {
     console.log(error.message);
-    recipeTitle.innerText     = error.message;
+    errorMessage.innerText     = "Unnable to fetch the data";
+
+    failed();
     listRemover();
   }
+}
+//----------------------------------Try Catch Element Manipulation
+const succeed = () =>{
+  recipeButton.classList.add("display-none");
+  errorMessage.classList.add("display-none");
+  container.classList.add("animation-stretch");
+  recipeContainer.classList.add("animation-fade-in","display-flex");
+}
+
+const failed = () => {
+  errorMessage.classList.remove("display-none");
+  recipeButton.classList.remove("display-none");
+  container.classList.remove("animation-stretch");
+  recipeContainer.classList.remove("animation-fade-in","display-flex");
 }
 
 //----------------------------------Embed Data to Document

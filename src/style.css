@@ -89,6 +89,14 @@ li{
 
 
 
+.display-flex{
+  display: flex;
+}
+
+.display-none{
+  display: none;
+}
+
 .animation-fade-in{
   animation: fade-in 1.5s ease;
 }
