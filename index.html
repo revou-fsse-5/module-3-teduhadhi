@@ -12,14 +12,22 @@
       <h1>Random Recipe Finder</h1>
       <button id="getRecipeBtn">Get Random Recipe</button>
       <div id="recipeContainer" class="recipe-container">
-        <img class="recipe-image" src="" alt="recipe-image">
-        <div class="text">
+        <div class="top-bar">
           <h2 class="recipe-title"></h2>
-          <ol class="recipe-instructions"></ol>
+          <button id="nextRecipeBtn">Next Recipe</button>
         </div>
-        <iframe class="youtube-thumb" src=""></iframe>
-        <button id="nextRecipeBtn">Next Recipe</button>
+
+        <section class="main-sect">
+          <img class="recipe-image" src="" alt="recipe-image">
+          <div class="main-text">
+            <h3 class="recipe-category"></h3>
+            <ol class="recipe-ingredients"></ol>
+          </div>
+        </section>
         
+        
+        <ol class="recipe-instructions"></ol>
+        <iframe class="youtube-thumb" src=""></iframe>       
       </div>
     </div>
     <script type="module" src="./src/main.js"></script>

@@ -1,18 +1,19 @@
 
 let container             = document.querySelector(".container");
-let recipeTitle           = document.querySelector(".recipe-title");
+
 let recipeButton          = document.querySelector("#getRecipeBtn");
 let nextRecipeButton      = document.querySelector("#nextRecipeBtn");
 let recipeContainer       = document.querySelector(".recipe-container");
-let recipeImage           = document.querySelector(".recipe-image");
+
 let recipeInstructions    = document.querySelector(".recipe-instructions");
-let youtubeThumbnail      = document.querySelector(".youtube-thumb");
+let recipeIngredients     = document.querySelector(".recipe-ingredients");
+
 let listAdded             = false;
 
 
 
-recipeButton.onclick      = onRandomRecipe;
-nextRecipeButton.onclick  = onRandomRecipe;
+recipeButton.onclick        = onRandomRecipe;
+nextRecipeButton.onclick    = onRandomRecipe;
 
 
 async function onRandomRecipe() {
@@ -26,14 +27,14 @@ async function onRandomRecipe() {
 
 const getData = async () =>{
   try {
-    const respone = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
+    const respone     = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
     const fetchedData = await respone.json();
     const recipeArray = fetchedData.meals[0];
-    // console.log(recipeArray.strInstructions);
+
+    listRemover();
+    makeIngredientList(ingredientsChecker(recipeArray));
     makeInstructionList(recipeArray.strInstructions);
     embedData(recipeArray);
-    await youtubeEmbed(recipeArray);
-    // throw new Error(error);
 
   } catch (error) {
     console.log(error.message);
@@ -42,26 +43,44 @@ const getData = async () =>{
   }
 }
 
-const makeInstructionList = (recipe) => {
-  let separateInstructions  = recipe.split(/\r\n/);
-  let instructionOrders     = separateInstructions.length;
-  listRemover();
-
-    for(let i = 0; i < instructionOrders; i++){
-      const node      = document.createElement("li");
-      const textnode  = document.createTextNode(separateInstructions[i]);
-      node.appendChild(textnode);
-      recipeInstructions.appendChild(node);
-      listAdded = true;
-    } 
+//----------------------------------Creating Lists
+const makeInstructionList = (data) => {
+  let separateInstructions  = data.split(/\r\n/);
+  listMaker(separateInstructions, recipeInstructions)
 }
 
-const embedData = (recipe) => {
-  recipeTitle.innerText     = recipe.strMeal;
-  recipeImage.src           = recipe.strMealThumb;
+const makeIngredientList = (data) => {
+  listMaker(data, recipeIngredients)
 }
 
+const listMaker = (array, element) => {
+  for(let i = 0; i < array.length; i++){
+    const node      = document.createElement("li");
+    const textnode  = document.createTextNode(array[i]);
+    node.appendChild(textnode);
+    element.appendChild(node);
+    listAdded = true;
+  } 
+}
 
+//----------------------------------Embed Data to Document
+
+let recipeTitle           = document.querySelector(".recipe-title");
+let recipeCategory        = document.querySelector(".recipe-category");
+let recipeImage           = document.querySelector(".recipe-image");
+let youtubeThumbnail      = document.querySelector(".youtube-thumb");
+
+
+const embedData = (data) => {
+  recipeTitle.innerText     = data.strMeal;
+  recipeCategory.innerText  = data.strCategory;
+  recipeImage.src           = data.strMealThumb;
+  let youtubeURL            = data.strYoutube;
+  let youtubeId             = youtubeURL.split('watch?v=');
+  youtubeThumbnail.src      = `https://www.youtube.com/embed/${youtubeId[1]}`
+}
+
+//----------------------------------Removing List
 const listRemover = () => {
   if(listAdded){
     let listArray = document.querySelectorAll('li');
@@ -72,9 +91,19 @@ const listRemover = () => {
     }
 }
 
-const youtubeEmbed = (data) => {
-  let youtubeURL = data.strYoutube;
-  console.log(youtubeURL);
-  let youtubeId = youtubeURL.split('watch?v=');
-  youtubeThumbnail.src      = `https://www.youtube.com/embed/${youtubeId[1]}`
+//----------------------------------Checking The Ingredients
+const ingredientsChecker = (data) => {
+  let ingredientsArray = [];
+  for (let i = 1; i < 20; i++) {
+    let ingredient = data[`strIngredient${i}`];
+    let measurement = data[`strMeasure${i}`];
+    let measuredIngridient = `${measurement} of ${ingredient}`
+    if (ingredient === ""){
+      return ingredientsArray;
+    }
+    ingredientsArray.push(measuredIngridient);
+
+  }
 }
+
+
