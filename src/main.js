@@ -15,7 +15,6 @@ let serverMessage          = document.querySelector(".server-message");
 
 async function onRandomRecipe() {
   await getData();
-  
   };
 
 const getData = async () =>{
@@ -40,7 +39,9 @@ const getData = async () =>{
     listRemover();
   }
 }
+
 //----------------------------------Try Catch Element Manipulation
+
 const succeed = () =>{
   recipeButton.classList.add("display-none");
   serverMessage.classList.add("display-none");
