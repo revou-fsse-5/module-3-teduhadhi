@@ -1,7 +1,7 @@
 body {
   font-family: Arial, sans-serif;
   background-color: #f8f9fa;
-  margin: 0;
+  margin: 30px;
   padding: 0;
   display: flex;
   justify-content: center;
@@ -37,6 +37,11 @@ button {
 
 button:hover {
   background-color: #0056b3;
+}
+
+.youtube-thumb{
+  width: 100%;
+  aspect-ratio: 16 / 9;
 }
 
 .recipe-container {

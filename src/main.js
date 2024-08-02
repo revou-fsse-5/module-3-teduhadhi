@@ -2,23 +2,26 @@
 let container             = document.querySelector(".container");
 let recipeTitle           = document.querySelector(".recipe-title");
 let recipeButton          = document.querySelector("#getRecipeBtn");
-let recipeButton2         = document.querySelector("#getRecipeBtn2");
+let nextRecipeButton      = document.querySelector("#nextRecipeBtn");
 let recipeContainer       = document.querySelector(".recipe-container");
 let recipeImage           = document.querySelector(".recipe-image");
 let recipeInstructions    = document.querySelector(".recipe-instructions");
+let youtubeThumbnail      = document.querySelector(".youtube-thumb");
 let listAdded             = false;
 
-recipeButton.onclick = onRandomRecipe;
-recipeButton2.onclick = onRandomRecipe;
+
+
+recipeButton.onclick      = onRandomRecipe;
+nextRecipeButton.onclick  = onRandomRecipe;
+
 
 async function onRandomRecipe() {
-
   await getData();
-
   container.classList.add("animation-stretch");
   recipeContainer.classList.add("animation-fade-in");
   recipeContainer.style     = "display:flex";
   recipeButton.style        = "display:none";
+  
   };
 
 const getData = async () =>{
@@ -27,9 +30,9 @@ const getData = async () =>{
     const fetchedData = await respone.json();
     const recipeArray = fetchedData.meals[0];
     // console.log(recipeArray.strInstructions);
-
     makeInstructionList(recipeArray.strInstructions);
     embedData(recipeArray);
+    await youtubeEmbed(recipeArray);
     // throw new Error(error);
 
   } catch (error) {
@@ -67,4 +70,11 @@ const listRemover = () => {
       list.remove()
     }
     }
+}
+
+const youtubeEmbed = (data) => {
+  let youtubeURL = data.strYoutube;
+  console.log(youtubeURL);
+  let youtubeId = youtubeURL.split('watch?v=');
+  youtubeThumbnail.src      = `https://www.youtube.com/embed/${youtubeId[1]}`
 }
