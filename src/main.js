@@ -1,20 +1,16 @@
 
-let container             = document.querySelector(".container");
+//----------------------------------Events
 
 let recipeButton          = document.querySelector("#getRecipeBtn");
 let nextRecipeButton      = document.querySelector("#nextRecipeBtn");
+
+recipeButton.onclick      = onRandomRecipe;
+nextRecipeButton.onclick  = onRandomRecipe;
+
+//----------------------------------Aynchronous function & data fetch
+
+let container             = document.querySelector(".container");
 let recipeContainer       = document.querySelector(".recipe-container");
-
-let recipeInstructions    = document.querySelector(".recipe-instructions");
-let recipeIngredients     = document.querySelector(".recipe-ingredients");
-
-let listAdded             = false;
-
-
-
-recipeButton.onclick        = onRandomRecipe;
-nextRecipeButton.onclick    = onRandomRecipe;
-
 
 async function onRandomRecipe() {
   await getData();
@@ -22,7 +18,6 @@ async function onRandomRecipe() {
   recipeContainer.classList.add("animation-fade-in");
   recipeContainer.style     = "display:flex";
   recipeButton.style        = "display:none";
-  
   };
 
 const getData = async () =>{
@@ -43,7 +38,28 @@ const getData = async () =>{
   }
 }
 
+//----------------------------------Embed Data to Document
+
+let recipeTitle           = document.querySelector(".recipe-title");
+let recipeCategory        = document.querySelector(".recipe-category");
+let recipeImage           = document.querySelector(".recipe-image");
+let youtubeThumbnail      = document.querySelector(".youtube-thumb");
+
+
+const embedData = (data) => {
+  recipeTitle.innerText     = data.strMeal;
+  recipeCategory.innerText  = data.strCategory;
+  recipeImage.src           = data.strMealThumb;
+  let youtubeURL            = data.strYoutube;
+  let youtubeId             = youtubeURL.split('watch?v=');
+  youtubeThumbnail.src      = `https://www.youtube.com/embed/${youtubeId[1]}`
+}
+
 //----------------------------------Creating Lists
+
+let recipeInstructions    = document.querySelector(".recipe-instructions");
+let recipeIngredients     = document.querySelector(".recipe-ingredients");
+
 const makeInstructionList = (data) => {
   let separateInstructions  = data.split(/\r\n/);
   listMaker(separateInstructions, recipeInstructions)
@@ -63,24 +79,10 @@ const listMaker = (array, element) => {
   } 
 }
 
-//----------------------------------Embed Data to Document
-
-let recipeTitle           = document.querySelector(".recipe-title");
-let recipeCategory        = document.querySelector(".recipe-category");
-let recipeImage           = document.querySelector(".recipe-image");
-let youtubeThumbnail      = document.querySelector(".youtube-thumb");
-
-
-const embedData = (data) => {
-  recipeTitle.innerText     = data.strMeal;
-  recipeCategory.innerText  = data.strCategory;
-  recipeImage.src           = data.strMealThumb;
-  let youtubeURL            = data.strYoutube;
-  let youtubeId             = youtubeURL.split('watch?v=');
-  youtubeThumbnail.src      = `https://www.youtube.com/embed/${youtubeId[1]}`
-}
-
 //----------------------------------Removing List
+
+let listAdded             = false;
+
 const listRemover = () => {
   if(listAdded){
     let listArray = document.querySelectorAll('li');
@@ -92,6 +94,7 @@ const listRemover = () => {
 }
 
 //----------------------------------Checking The Ingredients
+
 const ingredientsChecker = (data) => {
   let ingredientsArray = [];
   for (let i = 1; i < 20; i++) {
@@ -102,7 +105,6 @@ const ingredientsChecker = (data) => {
       return ingredientsArray;
     }
     ingredientsArray.push(measuredIngridient);
-
   }
 }
 

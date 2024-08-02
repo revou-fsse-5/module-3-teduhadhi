@@ -73,7 +73,7 @@ li{
   object-fit: cover;
   /* animation: slide-left 2.3s ease; */
   z-index: 2;
-  width: 200px;
+  width: 50%;
 }
 
 .recipe-title {
