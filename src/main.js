@@ -11,7 +11,7 @@ nextRecipeButton.onclick  = onRandomRecipe;
 
 let container             = document.querySelector(".container");
 let recipeContainer       = document.querySelector(".recipe-container");
-let errorMessage          = document.querySelector(".error-message");
+let serverMessage          = document.querySelector(".server-message");
 
 async function onRandomRecipe() {
   await getData();
@@ -20,6 +20,7 @@ async function onRandomRecipe() {
 
 const getData = async () =>{
   try {
+    wait();
     const respone     = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
     const fetchedData = await respone.json();
     const recipeArray = fetchedData.meals[0];
@@ -33,7 +34,7 @@ const getData = async () =>{
 
   } catch (error) {
     console.log(error.message);
-    errorMessage.innerText     = "Unnable to fetch the data";
+    serverMessage.innerText     = "Unnable to fetch the data";
 
     failed();
     listRemover();
@@ -42,16 +43,21 @@ const getData = async () =>{
 //----------------------------------Try Catch Element Manipulation
 const succeed = () =>{
   recipeButton.classList.add("display-none");
-  errorMessage.classList.add("display-none");
+  serverMessage.classList.add("display-none");
   container.classList.add("animation-stretch");
   recipeContainer.classList.add("animation-fade-in","display-flex");
 }
 
 const failed = () => {
-  errorMessage.classList.remove("display-none");
+  
   recipeButton.classList.remove("display-none");
   container.classList.remove("animation-stretch");
   recipeContainer.classList.remove("animation-fade-in","display-flex");
+}
+
+const wait = () => {
+  serverMessage.classList.remove("display-none");
+  serverMessage.innerText     = "please wait...";
 }
 
 //----------------------------------Embed Data to Document
