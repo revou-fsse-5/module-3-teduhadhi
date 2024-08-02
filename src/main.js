@@ -49,8 +49,8 @@ const succeed = () =>{
 }
 
 const failed = () => {
-  
   recipeButton.classList.remove("display-none");
+  serverMessage.classList.remove("display-none");
   container.classList.remove("animation-stretch");
   recipeContainer.classList.remove("animation-fade-in","display-flex");
 }
