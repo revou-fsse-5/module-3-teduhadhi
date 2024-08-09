@@ -43,9 +43,6 @@ nextRecipeButton.onclick = onRandomRecipe;
 var container = document.querySelector(".container");
 var recipeContainer = document.querySelector(".recipe-container");
 var serverMessage = document.querySelector(".server-message");
-// async function onRandomRecipe(): Promise<void> {
-//   await getData();
-//   };
 function onRandomRecipe() {
     return __awaiter(this, void 0, void 0, function () {
         var respone, fetchedData, recipeArray, error_1;
@@ -63,7 +60,7 @@ function onRandomRecipe() {
                     recipeArray = fetchedData.meals[0];
                     listRemover();
                     succeed();
-                    // makeIngredientList(ingredientsChecker(recipeArray));
+                    makeIngredientList(ingredientsChecker(recipeArray));
                     makeInstructionList(recipeArray.strInstructions);
                     embedData(recipeArray);
                     return [3 /*break*/, 4];
@@ -151,4 +148,5 @@ var ingredientsChecker = function (data) {
         }
         ingredientsArray.push(measuredIngridient);
     }
+    return ingredientsArray;
 };

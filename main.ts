@@ -9,14 +9,13 @@ interface Recipe {
   [key: string]:    any
 }
 
-
 //----------------------------------Events
 
 const recipeButton          = document.querySelector("#getRecipeBtn") as HTMLButtonElement;
 const nextRecipeButton      = document.querySelector("#nextRecipeBtn") as HTMLButtonElement;
 
-recipeButton.onclick      = onRandomRecipe;
-nextRecipeButton.onclick  = onRandomRecipe;
+recipeButton.onclick        = onRandomRecipe;
+nextRecipeButton.onclick    = onRandomRecipe;
 
 //----------------------------------Aynchronous function & data fetch
 
@@ -24,9 +23,6 @@ const container             = document.querySelector(".container") as HTMLDivEle
 const recipeContainer       = document.querySelector(".recipe-container") as HTMLDivElement;
 const serverMessage         = document.querySelector(".server-message") as HTMLParagraphElement
 
-// async function onRandomRecipe(): Promise<void> {
-//   await getData();
-//   };
 
 async function onRandomRecipe(): Promise<void> {
   try {
@@ -38,7 +34,7 @@ async function onRandomRecipe(): Promise<void> {
     listRemover();
     succeed();
 
-    // makeIngredientList(ingredientsChecker(recipeArray));
+    makeIngredientList(ingredientsChecker(recipeArray));
     makeInstructionList(recipeArray.strInstructions);
     embedData(recipeArray);
 
@@ -129,17 +125,18 @@ const listRemover = (): void => {
 
 //----------------------------------Checking The Ingredients
 
-const ingredientsChecker = (data: Recipe): string[] | undefined => {
-  let ingredientsArray = [];
+const ingredientsChecker = (data: Recipe): string[] => {
+  let ingredientsArray: string[] = [];
   for (let i = 1; i < 20; i++) {
-    let ingredient = data[`strIngredient${i}`];
-    let measurement = data[`strMeasure${i}`];
-    let measuredIngridient = `${measurement} of ${ingredient}`
+    let ingredient: string          = data[`strIngredient${i}`];
+    let measurement: string         = data[`strMeasure${i}`];
+    let measuredIngridient: string  = `${measurement} of ${ingredient}`;
     if (ingredient === ""){
       return ingredientsArray;
     }
     ingredientsArray.push(measuredIngridient);
   }
+  return ingredientsArray;
 }
 
 
