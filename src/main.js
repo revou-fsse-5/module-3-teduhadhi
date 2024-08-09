@@ -34,7 +34,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var _this = this;
 //----------------------------------Events
 var recipeButton = document.querySelector("#getRecipeBtn");
 var nextRecipeButton = document.querySelector("#nextRecipeBtn");
@@ -44,50 +43,42 @@ nextRecipeButton.onclick = onRandomRecipe;
 var container = document.querySelector(".container");
 var recipeContainer = document.querySelector(".recipe-container");
 var serverMessage = document.querySelector(".server-message");
+// async function onRandomRecipe(): Promise<void> {
+//   await getData();
+//   };
 function onRandomRecipe() {
     return __awaiter(this, void 0, void 0, function () {
+        var respone, fetchedData, recipeArray, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, getData()];
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    wait();
+                    return [4 /*yield*/, fetch("https://www.themealdb.com/api/json/v1/1/random.php")];
                 case 1:
-                    _a.sent();
-                    return [2 /*return*/];
+                    respone = _a.sent();
+                    return [4 /*yield*/, respone.json()];
+                case 2:
+                    fetchedData = _a.sent();
+                    recipeArray = fetchedData.meals[0];
+                    listRemover();
+                    succeed();
+                    // makeIngredientList(ingredientsChecker(recipeArray));
+                    makeInstructionList(recipeArray.strInstructions);
+                    embedData(recipeArray);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_1 = _a.sent();
+                    console.log(error_1);
+                    serverMessage.innerText = "Unnable to fetch the data";
+                    failed();
+                    listRemover();
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
 }
-;
-var getData = function () { return __awaiter(_this, void 0, void 0, function () {
-    var respone, fetchedData, recipeArray, error_1;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 3, , 4]);
-                wait();
-                return [4 /*yield*/, fetch("https://www.themealdb.com/api/json/v1/1/random.php")];
-            case 1:
-                respone = _a.sent();
-                return [4 /*yield*/, respone.json()];
-            case 2:
-                fetchedData = _a.sent();
-                recipeArray = fetchedData.meals[0];
-                listRemover();
-                succeed();
-                // makeIngredientList(ingredientsChecker(recipeArray));
-                makeInstructionList(recipeArray.strInstructions);
-                embedData(recipeArray);
-                return [3 /*break*/, 4];
-            case 3:
-                error_1 = _a.sent();
-                console.log(error_1);
-                serverMessage.innerText = "Unnable to fetch the data";
-                failed();
-                listRemover();
-                return [3 /*break*/, 4];
-            case 4: return [2 /*return*/];
-        }
-    });
-}); };
 //----------------------------------Try Catch Element Manipulation
 var succeed = function () {
     recipeButton.classList.add("display-none");
@@ -149,15 +140,15 @@ var listRemover = function () {
     }
 };
 //----------------------------------Checking The Ingredients
-// const ingredientsChecker = (data: Recipe): string[] | undefined => {
-//   let ingredientsArray = [];
-//   for (let i = 1; i < 20; i++) {
-//     let ingredient = data[`strIngredient${i}`];
-//     let measurement = data[`strMeasure${i}`];
-//     let measuredIngridient = `${measurement} of ${ingredient}`
-//     if (ingredient === ""){
-//       return ingredientsArray;
-//     }
-//     ingredientsArray.push(measuredIngridient);
-//   }
-// }
+var ingredientsChecker = function (data) {
+    var ingredientsArray = [];
+    for (var i = 1; i < 20; i++) {
+        var ingredient = data["strIngredient".concat(i)];
+        var measurement = data["strMeasure".concat(i)];
+        var measuredIngridient = "".concat(measurement, " of ").concat(ingredient);
+        if (ingredient === "") {
+            return ingredientsArray;
+        }
+        ingredientsArray.push(measuredIngridient);
+    }
+};

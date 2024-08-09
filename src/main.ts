@@ -1,11 +1,12 @@
 interface Recipe {
-  strMeal: string,
-  strMealThumb: string,
-  strInstructions: string,
-  strYoutube: string,
-  strCategory: string,
-  // strIngredient: string,
-  // strMeasure: string
+  strMeal:          string,
+  strMealThumb:     string,
+  strInstructions:  string,
+  strYoutube:       string,
+  strCategory:      string,
+  strIngredient:    string,
+  strMeasure:       string,
+  [key: string]:    any
 }
 
 
@@ -23,11 +24,11 @@ const container             = document.querySelector(".container") as HTMLDivEle
 const recipeContainer       = document.querySelector(".recipe-container") as HTMLDivElement;
 const serverMessage         = document.querySelector(".server-message") as HTMLParagraphElement
 
-async function onRandomRecipe(): Promise<void> {
-  await getData();
-  };
+// async function onRandomRecipe(): Promise<void> {
+//   await getData();
+//   };
 
-const getData = async (): Promise<void> =>{
+async function onRandomRecipe(): Promise<void> {
   try {
     wait();
     const respone: Response     = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
@@ -93,12 +94,12 @@ const embedData = (data: Recipe) => {
 const recipeInstructions    = document.querySelector(".recipe-instructions") as HTMLOListElement;
 const recipeIngredients     = document.querySelector(".recipe-ingredients") as HTMLUListElement;
 
-const makeInstructionList = (data: string): void => {
+const makeInstructionList   = (data: string): void => {
   let separateInstructions: string[]  = data.split(/\r\n/);
   listMaker(separateInstructions, recipeInstructions)
 }
 
-const makeIngredientList = (data: string[]): void => {
+const makeIngredientList    = (data: string[]): void => {
   listMaker(data, recipeIngredients)
 }
 
@@ -128,17 +129,17 @@ const listRemover = (): void => {
 
 //----------------------------------Checking The Ingredients
 
-// const ingredientsChecker = (data: Recipe): string[] | undefined => {
-//   let ingredientsArray = [];
-//   for (let i = 1; i < 20; i++) {
-//     let ingredient = data[`strIngredient${i}`];
-//     let measurement = data[`strMeasure${i}`];
-//     let measuredIngridient = `${measurement} of ${ingredient}`
-//     if (ingredient === ""){
-//       return ingredientsArray;
-//     }
-//     ingredientsArray.push(measuredIngridient);
-//   }
-// }
+const ingredientsChecker = (data: Recipe): string[] | undefined => {
+  let ingredientsArray = [];
+  for (let i = 1; i < 20; i++) {
+    let ingredient = data[`strIngredient${i}`];
+    let measurement = data[`strMeasure${i}`];
+    let measuredIngridient = `${measurement} of ${ingredient}`
+    if (ingredient === ""){
+      return ingredientsArray;
+    }
+    ingredientsArray.push(measuredIngridient);
+  }
+}
 
 
