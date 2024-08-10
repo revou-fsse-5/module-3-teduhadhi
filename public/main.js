@@ -1,5 +1,5 @@
-import list from "./listModule.js";
-import tryCatch from "./tryCatchModule.js";
+import list from "./listModule";
+import tryCatch from "./tryCatchModule";
 //----------------------------------Events
 tryCatch.recipeButton.onclick = onRandomRecipe;
 tryCatch.nextRecipeButton.onclick = onRandomRecipe;

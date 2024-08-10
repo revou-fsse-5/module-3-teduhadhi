@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "lib": ["es2015", "DOM"]
+    "lib": ["es2015", "DOM"],
+    "strict": true, 
+    "rootDir": "./src/",  
+    "outDir": "./public/",  
   },
   "files": [
     "./src/main.ts",
@@ -10,6 +13,5 @@
   ],
   "include": [
     "./",
-    "./src/"
   ]
 }
